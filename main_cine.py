@@ -125,9 +125,9 @@ while estapa_menu:
                                 f'{index + 1} = {tickets_entradas[item]["nombre"]} - ${tickets_entradas[item]["valor"]}\n')
 
                     respuesta_ticket = int(
-                        input('Ingrese el número según el "Tipo de Ticket" que desee: -> '))
+                        input('Ingrese el número según el "Tipo de Ticket" que desee:\n -> '))
                     respuesta_cantidad_tickets = int(input(
-                        'Ingrese el número según el ticket que desee: -> \n ** Solo puede comprar un máximo de 2 entradas y mínimo 1 ** ->'))
+                        'Ingrese el número según el ticket que desee: -> \n ** Solo puede comprar un máximo de 2 entradas y mínimo 1 **\n ->'))
 
                     if respuesta_cantidad_tickets == 1 or respuesta_cantidad_tickets == 2:
                         user["orden_compra"]["entradas"]["nombre_entrada"] = getNameDict(tickets_entradas, respuesta_ticket)
@@ -142,20 +142,21 @@ while estapa_menu:
                     try:
                         print('A continuación, se presenta la disponibilidad de asientos.\n Considere el número de asiento para reservar. Los Marcados en "X" están reservados.\n')
                         user["orden_compra"]["entradas"]["numero_asiento"].clear()
+
                         while respuesta_cantidad_tickets != len(user["orden_compra"]["entradas"]["numero_asiento"]):
-                            resultado = np.array(
-                                render_asientos_usados(asientos_cine))
+                            resultado = np.array(render_asientos_usados(asientos_cine))
                             cine_matriz = resultado.reshape(5, 10)
                             pantalla = f'\t[*** PANTALLA CINE ***]\n {cine_matriz}'
-                            respuesta_asiento = int(
-                                input(f'Ingrese su asiento según Disposición ->\n {pantalla}\n Asiento -> '))
                             
-                            reserva_asiento(asientos_cine, respuesta_asiento)
+                            try:
+                                respuesta_asiento = int(input(f'Ingrese su asiento según Disposición ->\n {pantalla}\n Asiento -> '))
+                                
+                                reserva_asiento(asientos_cine, respuesta_asiento)
 
-                            user["orden_compra"]["entradas"]["numero_asiento"].append(
-                                respuesta_asiento)
-                            print(
-                                f'{pantalla}\n Asiento Nº {respuesta_asiento} reservado con éxito! \n')
+                                user["orden_compra"]["entradas"]["numero_asiento"].append(respuesta_asiento)
+                                print(f'{pantalla}\n Asiento Nº {respuesta_asiento} reservado con éxito! \n')
+                            except:
+                                print('Ingrese un número de asiento Disponible! \n')
 
                         users_bd.append(user)
                         print('Proceso de reserva completado con éxito!')
@@ -176,9 +177,7 @@ while estapa_menu:
                     if respuesta_confiteria == 1:
                         print('Esta es nuestra carta de Palomitas Disponibles: ->\n')
                         for index, item in enumerate(palomitas):
-                            palomitas_confiteria = f'{palomitas[item]["nombre"]} - ${palomitas[item]["valor"]}'
-                            print(palomitas_confiteria)
-                            # print(f'{index + 1} = {palomitas[item]["nombre"]} - ${palomitas[item]["valor"]}\n')
+                            print(f'{index + 1} = {palomitas[item]["nombre"]} - ${palomitas[item]["valor"]}\n')
 
                         
                         add_confiteria = False

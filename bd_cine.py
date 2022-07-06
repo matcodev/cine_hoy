@@ -54,11 +54,6 @@ palomitas = {
         'valor': int(7800),
         'respuesta': 3,
         'estado' : True
-    },
-    'no': {
-        'respuesta': 4,
-        'valor': None,
-        'estado' : True
     }
 }
 
