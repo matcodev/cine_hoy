@@ -4,12 +4,14 @@ tickets_entradas = {
     'entrada_estreno': {
         'nombre': 'Entrada Estreno',
         'valor': int(4800),
-        'respuesta': 1
+        'respuesta': 1,
+        'estado': True
     },
     'entrada_normal': {
         'nombre': 'Entrada Normal',
         'valor': int(2900),
-        'respuesta': 2
+        'respuesta': 2,
+        'estado': True
     }
 }
 
@@ -38,21 +40,25 @@ palomitas = {
     'p_pequena': {
         'nombre': 'Palomitas Pequeñas',
         'valor': int(2500),
-        'respuesta': 1
+        'respuesta': 1,
+        'estado' : True
     },
     'p_mediana': {
         'nombre': 'Palomitas Medianas',
         'valor': int(4500),
-        'respuesta': 2
+        'respuesta': 2,
+        'estado' : True
     },
     'p_grande': {
         'nombre': 'Palomitas Grandes',
         'valor': int(7800),
-        'respuesta': 3
+        'respuesta': 3,
+        'estado' : True
     },
     'no': {
         'respuesta': 4,
-        'valor': None
+        'valor': None,
+        'estado' : True
     }
 }
 
@@ -79,30 +85,28 @@ bebidas = {
 }
 
 # for nameItem, rsp in funciones_peliculas.items():
-#     print(nameItem)
-#     for i in rsp["horarios"]:
-#         print(i)
+#     if rsp["respuesta"] == 1:
+#         for index, hora in enumerate(rsp["horarios"]):
+#             print(index + 1, hora)
 
-# def getHorarioFuncion(dict, respuesta):
+
+# for nameItem, rsp in funciones_peliculas.items():
+#     for index, i in enumerate(rsp["horarios"]):
+#         ''
+    # print(index + 1 , i)
+
+# def getHorarioFuncion(dict, respuesta, respuestaHorario):
 #     for nameItem, rsp in dict.items():
-#         if respuesta == int(nameItem):
-#             for hora in rsp["horarios"]:
-#                 return hora
-    
-  
-  
+#             if respuesta == rsp["respuesta"]:
+#                 return rsp["horarios"][respuestaHorario - 1]
+                    
 
+# for nameItem, rsp in funciones_peliculas.items():
+#         if 1 == rsp["respuesta"]:
+#             for index, hora in enumerate(rsp["horarios"]):
+#                 print(index, hora)
+#                 print(rsp["horarios"][0])
 
-# result = getHorarioFuncion(funciones_peliculas, 3)
+# result = getHorarioFuncion(funciones_peliculas, 3, 2)
 
-# for index, item in enumerate(funciones_peliculas):
-
-#     if funciones_peliculas[item]["estado"] == True:
-#         print(f'{index + 1} = {funciones_peliculas[item]["nombre"]}')
-
-# respuesta = int(input('Ingrese el número según película: -> '))
-# for index, item in enumerate(funciones_peliculas):
-#     if respuesta == funciones_peliculas[item]["respuesta"]:
-#         print(f'Ud seleccionó:\n {funciones_peliculas[item]["nombre"]} {funciones_peliculas[item]["horarios"]}')
-
-
+# print(result)

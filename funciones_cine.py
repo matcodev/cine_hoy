@@ -52,13 +52,12 @@ def getEstadoDict(dict, respuesta):
 def getValorDict(dict, respuesta):
     for nameItem, rsp in dict.items():
         if rsp["respuesta"] == respuesta:
-            return rsp["valor"]
+            return int(rsp["valor"])
 
-def getHorarioFuncion(dict, respuesta):
+def getHorarioFuncion(dict, respuesta, respuestaHorario):
     for nameItem, rsp in dict.items():
-        if respuesta == int(nameItem):
-            for hora in rsp["horarios"]:
-                return hora
+            if respuesta == rsp["respuesta"]:
+                return rsp["horarios"][respuestaHorario - 1]
 
 # def getValores(tipoTicket, qTicket, tipoPalomitas, qPalomitas, tipoBebida, qBebidas):
 #     for rspTicket in tickets_entradas:
