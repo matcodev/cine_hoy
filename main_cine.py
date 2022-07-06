@@ -3,7 +3,6 @@ from funciones_cine import getNameDict, reserva_asiento, render_asientos_usados,
 from bd_cine import tickets_entradas, palomitas, bebidas, funciones_peliculas
 
 users_bd = []
-
 asientos_cine = np.arange(1, 51, 1)
 
 estapa_menu = True
@@ -50,17 +49,15 @@ while estapa_menu:
 
             while add_rut:
                 try:
-                    rut_user = input(
-                        'A continuación, ingrese su rut sin puntos y con guión para grabar (ejemplo: 12345678-9) ->\n')
+                    rut_user = input('A continuación, ingrese su rut sin puntos y con guión para grabar (ejemplo: 12345678-9) ->\n')
                     rut_validado = valida_rut(rut_user)
 
                     if rut_validado == True:
                         user["rut"] = rut_user
-                        print('Rut Valido!\n')
+                        print('Rut Válido!\n')
                         add_rut = False
                     else:
-                        print(
-                            'RUT ingresado no es válido. Revise nuevamente el digito verificador!')
+                        print('RUT ingresado no es válido. Revise nuevamente el digito verificador!')
                 except:
                     print('RUT inválido, revise o vuelva a intentarlo!\n')
 
@@ -71,31 +68,26 @@ while estapa_menu:
                     respuesta_nombre_afiliado = input('Ingrese su nombre ->\n')
                     user["nombre"] = respuesta_nombre_afiliado
 
-                    respuesta_apellido_afiliado = input(
-                        'Ingrese su apellido Paterno ->\n')
+                    respuesta_apellido_afiliado = input('Ingrese su apellido Paterno ->\n')
                     user["apellido"] = respuesta_apellido_afiliado
 
                     add_nombre = False
                 except:
-                    print(
-                        'Verifique que los datos estén correctos o vuelva a intentarlo!')
+                    print('Verifique que los datos estén correctos o vuelva a intentarlo!')
 
             add_pelicula = True
 
             while add_pelicula:
                 try:
-                    print(
-                        ' *** Nuestra Cartelera disponible en CineHoy *** :\n Seleccione la opción según su número:\n')
+                    print(' *** Nuestra Cartelera disponible en CineHoy *** :\n Seleccione la opción según su número:\n')
                     for index, item in enumerate(funciones_peliculas):
                         if funciones_peliculas[item]["estado"] == True:
                             print(
                                 f'{index + 1} = {funciones_peliculas[item]["nombre"]}\n')
 
-                    respuesta_pelicula = int(
-                        input('Ingrese el número según función que desee: -> '))
+                    respuesta_pelicula = int(input('Ingrese el número según función que desee: -> '))
 
-                    user["orden_compra"]["entradas"]["pelicula"] = getNameDict(
-                        funciones_peliculas, respuesta_pelicula)
+                    user["orden_compra"]["entradas"]["pelicula"] = getNameDict(funciones_peliculas, respuesta_pelicula)
 
                     print('Selecciona un horario disponible:\n')
                     for nameItem, rsp in funciones_peliculas.items():
@@ -143,11 +135,11 @@ while estapa_menu:
                         print('A continuación, se presenta la disponibilidad de asientos.\n Considere el número de asiento para reservar. Los Marcados en "X" están reservados.\n')
                         user["orden_compra"]["entradas"]["numero_asiento"].clear()
 
+                        resultado = np.array(render_asientos_usados(asientos_cine))
+                        cine_matriz = resultado.reshape(5, 10)
                         while respuesta_cantidad_tickets != len(user["orden_compra"]["entradas"]["numero_asiento"]):
-                            resultado = np.array(render_asientos_usados(asientos_cine))
-                            cine_matriz = resultado.reshape(5, 10)
                             pantalla = f'\t[*** PANTALLA CINE ***]\n {cine_matriz}'
-                            
+
                             try:
                                 respuesta_asiento = int(input(f'Ingrese su asiento según Disposición ->\n {pantalla}\n Asiento -> '))
                                 
@@ -175,11 +167,18 @@ while estapa_menu:
                     respuesta_confiteria = int(input('¿Desea agregar confitería?\n 1 = Si\n 2 = No\n'))
 
                     if respuesta_confiteria == 1:
+                        user["orden_compra"]["confiteria"]["acepta"] = True
+
                         print('Esta es nuestra carta de Palomitas Disponibles: ->\n')
                         for index, item in enumerate(palomitas):
                             print(f'{index + 1} = {palomitas[item]["nombre"]} - ${palomitas[item]["valor"]}\n')
-
                         
+                        #step!
+                        respuesta_palomitas = int(input('Indique la opción según Palomitas que desees: -> '))
+
+                        user["orden_compra"]["confiteria"]["palomitas"]["nombre"] = getNameDict(palomitas, respuesta_palomitas)
+                        print('Palomitas agregadas correctamente! \n')
+
                         add_confiteria = False
                     else:
                         print('Gracias por preferirnos! Vuelva pronto!\n')

@@ -1,5 +1,3 @@
-from funciones_cine import getNameDict, getEstadoDict
-
 tickets_entradas = {
     'entrada_estreno': {
         'nombre': 'Entrada Estreno',
@@ -78,30 +76,3 @@ bebidas = {
         'valor': None
     }
 }
-
-# for nameItem, rsp in funciones_peliculas.items():
-#     if rsp["respuesta"] == 1:
-#         for index, hora in enumerate(rsp["horarios"]):
-#             print(index + 1, hora)
-
-
-# for nameItem, rsp in funciones_peliculas.items():
-#     for index, i in enumerate(rsp["horarios"]):
-#         ''
-    # print(index + 1 , i)
-
-# def getHorarioFuncion(dict, respuesta, respuestaHorario):
-#     for nameItem, rsp in dict.items():
-#             if respuesta == rsp["respuesta"]:
-#                 return rsp["horarios"][respuestaHorario - 1]
-                    
-
-# for nameItem, rsp in funciones_peliculas.items():
-#         if 1 == rsp["respuesta"]:
-#             for index, hora in enumerate(rsp["horarios"]):
-#                 print(index, hora)
-#                 print(rsp["horarios"][0])
-
-# result = getHorarioFuncion(funciones_peliculas, 3, 2)
-
-# print(result)
